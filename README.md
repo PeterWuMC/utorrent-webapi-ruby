@@ -22,11 +22,12 @@ UTorrent.configuration = configuration
 
 The current version only support the following actions
 
-* Querying torrents
+* Only support HTTP
+* Querying torrents [attributes](https://github.com/PeterWuMC/utorrent-webapi-ruby/blob/master/lib/u_torrent/torrent.rb#L20-L26)
 * Perform the following actions to torrent: `start, stop, force_start, pause, unpause, recheck, remove, remove_data`
-* Querying files within a specific torrent
+* Querying files within a specific torrent [attributes](https://github.com/PeterWuMC/utorrent-webapi-ruby/blob/master/lib/u_torrent/file.rb#L10-L13)
 * Add new torrent using with url
-* Updating a file priority
+* Updating a file [priority](https://github.com/PeterWuMC/utorrent-webapi-ruby/blob/master/lib/u_torrent/file.rb#L3-L8)
 
 ## Usage
 
