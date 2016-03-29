@@ -42,7 +42,9 @@ module UTorrent
         action: 'add-url',
         s:      url
       )
-      UTorrent::Torrent.all.detect {|torrent| torrent.queue_order == UTorrent::Torrent.all.map(&:queue_order).max}
+      all_torrents = UTorrent::Torrent.all
+      max_queue_order = all_torrents.map(&:queue_order).max
+      all_torrents.detect { |torrent| torrent.queue_order == max_queue_order }
     end
 
     def statuses
