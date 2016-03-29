@@ -1,4 +1,4 @@
-# utorrent-webapi-ruby
+# utorrent-webapi-ruby (BETA)
 
  This gem is used to utilise the µTorrent 2.0 (or above) webapi
 
@@ -31,6 +31,7 @@ The current version only support the following actions
 * Querying files within a specific torrent [attributes](https://github.com/PeterWuMC/utorrent-webapi-ruby/blob/master/lib/u_torrent/file.rb#L10-L13)
 * Add new torrent using with url
 * Updating a file [priority](https://github.com/PeterWuMC/utorrent-webapi-ruby/blob/master/lib/u_torrent/file.rb#L3-L8)
+* As of the current version, it does not have any error handling. Also the token is only valid for 30 minutes and it does not get automatically renewed.
 
 ## Usage
 
