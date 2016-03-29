@@ -37,6 +37,14 @@ module UTorrent
       all.detect { |torrent| torrent.id == id }
     end
 
+    def self.add(url)
+      UTorrent::Http.get_with_authentication(
+        action: 'add-url',
+        s:      url
+      )
+      UTorrent::Torrent.all.detect {|torrent| torrent.queue_order == UTorrent::Torrent.all.map(&:queue_order).max}
+    end
+
     def statuses
       status_code = @raw_array[1]
       status = STATUSES.select { |_, value| status_code & value == value }
