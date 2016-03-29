@@ -1,5 +1,8 @@
 # utorrent-webapi-ruby
 
+ This gem is used to utilise the µTorrent 2.0 (or above) webapi
+
+ It uses the new [authentication mechanism](https://forum.utorrent.com/topic/49550-attention-webui-developers-support-token-authentication/), also you can find the [api reference](http://help.utorrent.com/customer/portal/topics/664593/articles).
 
 ## Installation
 
