@@ -1,17 +1,21 @@
 PATH
   remote: .
   specs:
-    rabbit_feed (0.0.1)
+    utorrent-webapi-ruby (0.0.1)
+      nokogiri
 
 GEM
   remote: https://rubygems.org/
   specs:
+    mini_portile2 (2.0.0)
+    nokogiri (1.6.7.2)
+      mini_portile2 (~> 2.0.0.rc2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  rabbit_feed!
+  utorrent-webapi-ruby!
 
 BUNDLED WITH
    1.10.4
