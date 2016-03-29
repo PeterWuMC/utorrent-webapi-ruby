@@ -5,6 +5,7 @@ require 'nokogiri'
 require 'json'
 require_relative 'u_torrent/configuration'
 require_relative 'u_torrent/http'
+require_relative 'u_torrent/base'
 require_relative 'u_torrent/torrent'
 require_relative 'u_torrent/file'
 

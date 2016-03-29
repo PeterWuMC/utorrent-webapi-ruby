@@ -11,6 +11,12 @@ module UTorrent
       'Loaded'            => 128,
     }
 
+    ACTIONS = [
+      :start, :stop, :force_start,
+      :pause, :unpause, :recheck,
+      :remove, :remove_data
+    ]
+
     ATTRIBUTES = [
       :id, nil, :name, :size, nil, :downloaded, :uploaded, :ratio,
       :upload_speed, :download_speed, :eta, :label, :peers_connected,
@@ -19,29 +25,16 @@ module UTorrent
       :current_directory, nil, nil, nil
     ]
 
+    include UTorrent::Base
+
     def self.all
-      uri = UTorrent.base_uri
-      response = UTorrent::Http.get_with_authentication(uri, list: 1)
+      response = UTorrent::Http.get_with_authentication(list: 1)
       torrents_array = JSON.parse(response.body)['torrents']
       torrents_array.map { |torrent| self.new(torrent) }
     end
 
     def self.find(id)
       all.detect { |torrent| torrent.id == id }
-    end
-
-    attr_reader :raw_array
-
-    def initialize(array)
-      @raw_array = array
-    end
-
-    ATTRIBUTES.each_with_index do |attr_name, i|
-      unless attr_name.nil?
-        define_method attr_name do
-          @raw_array[i]
-        end
-      end
     end
 
     def statuses
@@ -55,11 +48,31 @@ module UTorrent
     end
 
     def files
-      uri = UTorrent.base_uri
-      response = UTorrent::Http.get_with_authentication(uri, action: 'getfiles', hash: id)
+      response = UTorrent::Http.get_with_authentication(action: 'getfiles', hash: id)
       files_array = JSON.parse(response.body)['files'].last
-      files_array.map { |file| UTorrent::File.new(file) }
+      files_array.each_with_index.map { |file, i| UTorrent::File.new(file, i, id) }
     end
 
+    ACTIONS.each do |action|
+      define_method action do
+        execute(action.to_s.delete('_'))
+        true
+      end
+    end
+
+    def refresh!
+      torrent = self.class.find(id)
+      @raw_array = torrent.raw_array
+    end
+
+    private
+
+    def execute(action)
+      UTorrent::Http.get_with_authentication(
+        action: action,
+        hash:    id
+      )
+      refresh!
+    end
   end
 end

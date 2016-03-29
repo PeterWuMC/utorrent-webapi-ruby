@@ -2,9 +2,9 @@ module UTorrent
   module Http
     module_function
 
-    def get_with_authentication(uri, query={})
+    def get_with_authentication(query={})
       query.merge!(token: token)
-      get(uri, query) do |request|
+      get(UTorrent.base_uri, query) do |request|
         request['Cookie'] = cookie
       end
     end
