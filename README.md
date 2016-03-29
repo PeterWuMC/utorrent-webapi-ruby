@@ -10,6 +10,8 @@ Add this line to your application's Gemfile:
 
     gem 'utorrent-webapi-ruby', git: 'git@github.com:PeterWuMC/utorrent-webapi-ruby.git'
 
+    require 'u_torrent'
+
 ## Configuration
 
 ```ruby
