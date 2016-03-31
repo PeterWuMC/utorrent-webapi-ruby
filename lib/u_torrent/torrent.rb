@@ -1,3 +1,5 @@
+require 'timeout'
+
 module UTorrent
   class Torrent
     STATUSES = {
@@ -21,7 +23,7 @@ module UTorrent
       :id, nil, :name, :size, nil, :downloaded, :uploaded, :ratio,
       :upload_speed, :download_speed, :eta, :label, :peers_connected,
       :peers_in_swarm, :seeds_connected, :seeds_in_swarm, :availability,
-      :queue_order, :remaining, nil, nil, :status, nil, nil, nil, nil,
+      :queue_order, :remaining, :url, nil, :status, nil, nil, nil, nil,
       :current_directory, nil, nil, nil
     ]
 
@@ -43,9 +45,17 @@ module UTorrent
         s:      url,
         label: 'foobar'
       )
-      all_torrents = UTorrent::Torrent.all
-      max_queue_order = all_torrents.map(&:queue_order).max
-      all_torrents.detect { |torrent| torrent.queue_order == max_queue_order }
+
+      Timeout.timeout(5) do
+        while(true) do
+          all_torrents = UTorrent::Torrent.all
+          matching_torrent = all_torrents.detect do |torrent|
+            torrent.url == url
+          end
+
+          return matching_torrent unless matching_torrent.nil?
+        end
+      end
     end
 
     def statuses
