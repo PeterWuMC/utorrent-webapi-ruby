@@ -19,7 +19,7 @@ module UTorrent
 
       yield request if block_given?
 
-      UTorrent.log.debug "HTTP::Get #{request.path}"
+      UTorrent.log.debug "UTorrent::Http.get #{request.path}"
 
       http = Net::HTTP.new(uri.host, uri.port)
       http.request(request)
