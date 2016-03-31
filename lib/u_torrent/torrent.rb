@@ -92,7 +92,7 @@ module UTorrent
       end
     end
 
-    %w(finished downloading).each do |status|
+    %w(finished downloading seeding).each do |status|
       define_method "#{status}?" do
         self.status == status.capitalize
       end
