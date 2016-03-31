@@ -20,6 +20,7 @@ configuration.url = '192.168.2.100'
 configuration.port = '8085'
 configuration.username = 'admin'
 configuration.password = 'password'
+configuration.logger = Logger.new(path)
 UTorrent.configuration = configuration
 ```
 

@@ -24,4 +24,8 @@ module UTorrent
   def base_uri
     URI.parse("#{@configuration.protocol}://#{@configuration.url}:#{@configuration.port}/gui/")
   end
+
+  def log
+    @configuration.logger
+  end
 end
