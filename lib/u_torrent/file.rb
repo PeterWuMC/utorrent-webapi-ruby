@@ -34,7 +34,7 @@ module UTorrent
       @raw_array[3]
     end
 
-    def skip
+    def skip!
       send(:priority=, 0)
     end
 
