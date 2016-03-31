@@ -38,6 +38,10 @@ module UTorrent
       send(:priority=, 0)
     end
 
+    def skipped?
+      priority == 0
+    end
+
     def priority=(priority)
       UTorrent::Http.get_with_authentication(
         action: 'setprio',
