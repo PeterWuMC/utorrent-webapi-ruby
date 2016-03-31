@@ -40,7 +40,8 @@ module UTorrent
     def self.add(url)
       UTorrent::Http.get_with_authentication(
         action: 'add-url',
-        s:      url
+        s:      url,
+        label: 'foobar'
       )
       all_torrents = UTorrent::Torrent.all
       max_queue_order = all_torrents.map(&:queue_order).max
@@ -55,6 +56,16 @@ module UTorrent
 
     def percentage
       @raw_array[4].to_f / 10
+    end
+
+    def label=(label)
+      UTorrent::Http.get_with_authentication(
+        action: 'setprops',
+        hash:   id,
+        s:      'label',
+        v:      label
+      )
+      refresh!
     end
 
     def files
