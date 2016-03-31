@@ -86,7 +86,7 @@ module UTorrent
     end
 
     ACTIONS.each do |action|
-      define_method action do
+      define_method "#{action}!" do
         execute(action.to_s.delete('_'))
         true
       end
