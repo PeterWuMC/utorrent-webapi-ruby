@@ -54,6 +54,7 @@ module UTorrent
           end
 
           return matching_torrent unless matching_torrent.nil?
+          sleep 0.1
         end
       end
     end
