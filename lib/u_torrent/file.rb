@@ -34,6 +34,10 @@ module UTorrent
       @raw_array[3]
     end
 
+    def skip
+      send(:priority=, 0)
+    end
+
     def priority=(priority)
       UTorrent::Http.get_with_authentication(
         action: 'setprio',
