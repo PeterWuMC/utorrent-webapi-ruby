@@ -92,6 +92,12 @@ module UTorrent
       end
     end
 
+    %w(finished downloading).each do |status|
+      define_method "#{status}?" do
+        self.status == status.capitalize
+      end
+    end
+
     def refresh!
       torrent = self.class.find(id)
       @raw_array = torrent.raw_array
