@@ -50,7 +50,7 @@ The current version only support the following actions
 
     UTorrent::Torrent.find(HASH)
 
-| method            | Use                                                         |
+| method            | explain                                                     |
 | ----              | ---                                                         |
 | id                | torrent HASH                                                |
 | name              | torrent name                                                |
@@ -95,7 +95,7 @@ The current version only support the following actions
 
     UTorrent::Torrent#files
 
-| method                 | Use                                                                                          |
+| method                 | explain                                                                                      |
 | ----                   | ---                                                                                          |
 | name                   | file name                                                                                    |
 | size                   | file size                                                                                    |
