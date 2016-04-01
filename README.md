@@ -50,44 +50,51 @@ The current version only support the following actions
 
     UTorrent::Torrent.find(HASH)
 
-| method            | explain                                                     |
-| ----              | ---                                                         |
-| id                | torrent HASH                                                |
-| name              | torrent name                                                |
-| size              | torrent total size                                          |
-| downloaded        | total downloaded of the torrent in BYTES                    |
-| uploaded          | total uploaded of the torrent in BYTES                      |
-| ratio             | torrent ratio                                               |
-| upload_speed      | current upload seed of the torrent (BYTES per SECOND)       |
-| download_speed    | current download seed of the torrent (BYTES per SECOND)     |
-| eta               | ETA of the torrent in SECONDS                               |
-| statuses          | list out all the statuses it was in                         |
-| status            | the current status of the torrent                           |
-| percentage        | the current completed percentage of the torrent             |
-| label             | the current label of the torrent                            |
-| label=            | set label for the torrent                                   |
-| start!            | start the torrent                                           |
-| stop!             | stop the torrent                                            |
-| force_start!      | force start the torrent, event it reaches maximum downloads |
-| pause!            | pause the torrent                                           |
-| unpause!          | unpause the torrent                                         |
-| recheck!          | recheck the torrent                                         |
-| remove!           | remove the torrent                                          |
-| remove_data!      | remove the torrent and delete the data                      |
-| files             | list all files of the torrent                               |
-| finished?         | true if the torrent current status is `Finished`            |
-| downloading?      | true if the torrent current status is `Downloading`         |
-| seeding?          | true if the torrent current status is `Seeding`             |
-| refresh!          | reload the torrent information                              |
-| peers_connected   |                                                             |
-| peers_in_swarm    |                                                             |
-| seeds_connected   |                                                             |
-| seeds_in_swarm    |                                                             |
-| availability      |                                                             |
-| queue_order       | current queue order of the torrent                          |
-| remaining         | reminding BYTES                                             |
-| url               | the original torrent url if it was added from url           |
-| current_directory | current location of the downloaded files                    |
+#### Torrent attributes
+
+| method            | explain                                                 |
+| ----              | ---                                                     |
+| id                | torrent HASH                                            |
+| name              | torrent name                                            |
+| size              | torrent total size                                      |
+| downloaded        | total downloaded of the torrent in BYTES                |
+| uploaded          | total uploaded of the torrent in BYTES                  |
+| ratio             | torrent ratio                                           |
+| upload_speed      | current upload seed of the torrent (BYTES per SECOND)   |
+| download_speed    | current download seed of the torrent (BYTES per SECOND) |
+| eta               | ETA of the torrent in SECONDS                           |
+| statuses          | list out all the statuses it was in                     |
+| status            | the current status of the torrent                       |
+| percentage        | the current completed percentage of the torrent         |
+| label             | the current label of the torrent                        |
+| peers_connected   |                                                         |
+| peers_in_swarm    |                                                         |
+| seeds_connected   |                                                         |
+| seeds_in_swarm    |                                                         |
+| availability      |                                                         |
+| queue_order       | current queue order of the torrent                      |
+| remaining         | reminding BYTES                                         |
+| url               | the original torrent url if it was added from url       |
+| current_directory | current location of the downloaded files                |
+
+#### Torrent actions
+
+| method       | explain                                                     |
+| ----         | ---                                                         |
+| label=       | set label for the torrent                                   |
+| start!       | start the torrent                                           |
+| stop!        | stop the torrent                                            |
+| force_start! | force start the torrent, event it reaches maximum downloads |
+| pause!       | pause the torrent                                           |
+| unpause!     | unpause the torrent                                         |
+| recheck!     | recheck the torrent                                         |
+| remove!      | remove the torrent                                          |
+| remove_data! | remove the torrent and delete the data                      |
+| finished?    | true if the torrent current status is `Finished`            |
+| downloading? | true if the torrent current status is `Downloading`         |
+| seeding?     | true if the torrent current status is `Seeding`             |
+| refresh!     | reload the torrent information                              |
+| files        | list all files of the torrent                               |
 
 ### File
 
@@ -95,14 +102,21 @@ The current version only support the following actions
 
     UTorrent::Torrent#files
 
+#### File attributes
+
 | method                 | explain                                                                                      |
 | ----                   | ---                                                                                          |
 | name                   | file name                                                                                    |
 | size                   | file size                                                                                    |
 | downloaded             | total downloaded of the file in BYTES                                                        |
 | priority               | current priority of the file                                                                 |
-| priority=              | set priority of the file                                                                     |
 | priority_display_value | `{0 => "Don't Download", 1 => 'Low Priority', 2 => 'Normal Priority', 3 => 'High Priority'}` |
-| skip!                  | set the file priority to 0                                                                   |
-| skipped?               | true if the file priority is 0                                                               |
-| refresh!               | reload the file information                                                                  |
+
+#### File actions
+
+| method    | explain                        |
+| ----      | ---                            |
+| priority= | set priority of the file       |
+| skip!     | set the file priority to 0     |
+| skipped?  | true if the file priority is 0 |
+| refresh!  | reload the file information    |
