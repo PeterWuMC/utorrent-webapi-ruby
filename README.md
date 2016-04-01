@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/utorrent-webapi-ruby.svg)](https://badge.fury.io/rb/utorrent-webapi-ruby)
+
 # utorrent-webapi-ruby (BETA)
 
  This gem is used to utilise the µTorrent 2.0 (or above) webapi
