@@ -43,7 +43,6 @@ module UTorrent
       UTorrent::Http.get_with_authentication(
         action: 'add-url',
         s:      url,
-        label: 'foobar'
       )
 
       Timeout.timeout(5) do
