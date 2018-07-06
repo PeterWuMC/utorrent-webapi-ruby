@@ -45,7 +45,7 @@ module UTorrent
 
       response = get(uri)
 
-      @token = Nokogiri::HTML(response.body).at_xpath('//div').content
+      @token = response.body.gsub(/<[^<>]+>/, '')
       @cookie = response['set-cookie']
     end
 
