@@ -1,7 +1,6 @@
 require 'cgi'
 require 'uri'
 require 'net/http'
-require 'nokogiri'
 require 'json'
 require_relative 'u_torrent/configuration'
 require_relative 'u_torrent/http'
