@@ -1,4 +1,5 @@
 require 'timeout'
+require 'date'
 
 module UTorrent
   class Torrent
@@ -23,8 +24,8 @@ module UTorrent
       :id, nil, :name, :size, nil, :downloaded, :uploaded, :ratio,
       :upload_speed, :download_speed, :eta, :label, :peers_connected,
       :peers_in_swarm, :seeds_connected, :seeds_in_swarm, :availability,
-      :queue_order, :remaining, :url, nil, :status, nil, nil, nil, nil,
-      :current_directory, nil, nil, nil
+      :queue_order, :remaining, :url, nil, :status, nil, :added_epoch,
+      :completed_epoch, nil, :current_directory, nil, nil, nil
     ]
 
     include UTorrent::Base
@@ -62,6 +63,14 @@ module UTorrent
       status_code = @raw_array[1]
       status = STATUSES.select { |_, value| status_code & value == value }
       status.keys.reverse
+    end
+
+    def added
+      DateTime.strptime(added_epoch.to_s, '%s')
+    end
+
+    def completed
+      DateTime.strptime(completed_epoch.to_s, '%s')
     end
 
     def percentage
