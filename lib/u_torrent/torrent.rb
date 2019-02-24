@@ -46,11 +46,28 @@ module UTorrent
         s:      url,
       )
 
+      url_uri = URI.parse(url)
+      is_magnet = url_uri.scheme == 'magnet'
+      magnet_id = nil
+      if is_magnet
+        magnet_id = url_uri.opaque.sub(/^\?/, '').split('&').map { |x|
+          x.split('=', 2)
+        }.select { |x|
+          x[0] == 'xt'
+        }.map { |x|
+          x[1].split(':')[-1]
+        }.first.downcase
+      end
+
       Timeout.timeout(5) do
         while(true) do
           all_torrents = UTorrent::Torrent.all
           matching_torrent = all_torrents.detect do |torrent|
-            torrent.url == url
+            if is_magnet
+              torrent.id.downcase == magnet_id
+            else
+              torrent.url == url
+            end
           end
 
           return matching_torrent unless matching_torrent.nil?
