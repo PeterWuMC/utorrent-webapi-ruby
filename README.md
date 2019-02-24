@@ -34,7 +34,7 @@ The current version only support the following actions
 * Querying torrents [attributes](https://github.com/PeterWuMC/utorrent-webapi-ruby/blob/master/lib/u_torrent/torrent.rb#L20-L26)
 * Perform the following actions to torrent: `start, stop, force_start, pause, unpause, recheck, remove, remove_data`
 * Querying files within a specific torrent [attributes](https://github.com/PeterWuMC/utorrent-webapi-ruby/blob/master/lib/u_torrent/file.rb#L10-L13)
-* Add new torrent using with url
+* Add new torrent using with url or magnet
 * Updating a file [priority](https://github.com/PeterWuMC/utorrent-webapi-ruby/blob/master/lib/u_torrent/file.rb#L3-L8)
 * As of the current version, it does not have any error handling. Also the token is only valid for 30 minutes and it does not get automatically renewed.
 
